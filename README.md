@@ -1,1 +1,0 @@
-# scriptx-mobile
