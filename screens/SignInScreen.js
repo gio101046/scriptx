@@ -4,7 +4,7 @@ import { Text, Button, Input} from "galio-framework"
 import { StatusBar } from "expo-status-bar"; // TODO: remove this for prod
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import backgroundImage from "../assets/login-page-background.jpg";
-import logo_icon from "../assets/logo-icon.png";
+import logo from "../assets/logo.png";
 import theme from "../theme";
 
 class SignInScreen extends React.Component {
@@ -28,15 +28,15 @@ class SignInScreen extends React.Component {
                     <View style={styles.statusBar}></View>
                     <View style={{height: "20%"}}></View>
                     <View style={styles.modal}>
-                        <Image style={{width: 125, height: 110}} source={logo_icon} />
+                        <Image style={{width: 125, height: 110}} source={logo} />
                         <Text style={styles.emailLabel}>Your email</Text>
                         <Input placeholder={this.EMAIL_LABEL_PLACEHOLDER} />
                         <Text style={styles.passwordLabel}>Your password</Text>
                         <Input placeholder={this.PASSWORD_LABEL_PLACEHOLDER} password={true} viewPass/>
                         <Button round style={styles.signInButton} color="#00435D" onPress={() => this.props.navigation.navigate('homescreen')}>Sign in</Button>
                         <View style={styles.linkTextContainer}>
-                        <Text style={styles.createAccountText}>Create Account</Text>
-                        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                          <Text style={styles.createAccountText}>Create Account</Text>
+                          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
                         </View>
                     </View>
                 </View>
