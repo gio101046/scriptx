@@ -1,5 +1,7 @@
 const COLORS = {
-    WHITE: "#fff"
+    WHITE: "#fff",
+    BLACK: "#000",
+    LIGHT_GRAY: "#D3D3D3"
 }
 
 const SHADOW = {
