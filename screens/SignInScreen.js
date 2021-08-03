@@ -1,9 +1,11 @@
 import React from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
-import { Text, Button, Input } from "galio-framework"
+import { ImageBackground, StyleSheet, View, Image } from "react-native";
+import { Text, Button, Input} from "galio-framework"
 import { StatusBar } from "expo-status-bar"; // TODO: remove this for prod
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import backgroundImage from "../assets/login-page-background.jpg";
+import logo_icon from "../assets/logo-icon.png";
+import theme from "../theme";
 
 class SignInScreen extends React.Component {
 
@@ -24,8 +26,9 @@ class SignInScreen extends React.Component {
                 <StatusBar style="auto" />
                 <View style={styles.screen}>
                     <View style={styles.statusBar}></View>
-                    <View style={{height: "25%"}}></View>
+                    <View style={{height: "20%"}}></View>
                     <View style={styles.modal}>
+                        <Image style={{width: 125, height: 110}} source={logo_icon} />
                         <Text style={styles.emailLabel}>Your email</Text>
                         <Input placeholder={this.EMAIL_LABEL_PLACEHOLDER} />
                         <Text style={styles.passwordLabel}>Your password</Text>
@@ -56,26 +59,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: getStatusBarHeight(),
     width: "100%",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
+    ...theme.SHADOW
   },
   modal: {
     alignItems: "center",
     justifyContent: "center",
-    height: 334,
+    height: 484,
     width: "85%",
     padding: 15,
+    ...theme.SHADOW,
     backgroundColor: "#fff",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
     borderRadius: 10
   },
   signInButton: {
@@ -85,6 +78,7 @@ const styles = StyleSheet.create({
   emailLabel: {
     textAlign: "left",
     alignSelf: "stretch",
+    marginTop: 25,
     marginBottom: 5
   },
   passwordLabel: {
