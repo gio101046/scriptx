@@ -2,12 +2,21 @@ import React from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 import { Text, Button, Input } from "galio-framework"
 import { StatusBar } from "expo-status-bar"; // TODO: remove this for prod
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import backgroundImage from "../assets/login-page-background.jpg";
 
 class SignInScreen extends React.Component {
-    
+
     EMAIL_LABEL_PLACEHOLDER = "e.g. elon@tesla.com";
     PASSWORD_LABEL_PLACEHOLDER = "Your password here";
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        
+    }
 
     render() {
         return (
@@ -15,24 +24,25 @@ class SignInScreen extends React.Component {
                 <StatusBar style="auto" />
                 <View style={styles.screen}>
                     <View style={styles.statusBar}></View>
-                    <View style={{height: "20%"}}></View>
+                    <View style={{height: "25%"}}></View>
                     <View style={styles.modal}>
                         <Text style={styles.emailLabel}>Your email</Text>
                         <Input placeholder={this.EMAIL_LABEL_PLACEHOLDER} />
                         <Text style={styles.passwordLabel}>Your password</Text>
                         <Input placeholder={this.PASSWORD_LABEL_PLACEHOLDER} password={true} viewPass/>
-                        <Button round style={styles.signInButton} color="#00435D">Sign in</Button>
+                        <Button round style={styles.signInButton} color="#00435D" onPress={() => this.props.navigation.navigate('homescreen')}>Sign in</Button>
                         <View style={styles.linkTextContainer}>
                         <Text style={styles.createAccountText}>Create Account</Text>
                         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
                         </View>
                     </View>
-                    <View style={{height: "30%"}}></View>
                 </View>
             </ImageBackground>
         );
     }
 }
+
+console.log();
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
   },
   statusBar: {
     backgroundColor: "#fff",
-    height: "5%",
+    height: getStatusBarHeight(),
     width: "100%",
     shadowOffset: {
       width: 0,
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
   modal: {
     alignItems: "center",
     justifyContent: "center",
-    height: "45%",
+    height: 334,
     width: "85%",
     padding: 15,
     backgroundColor: "#fff",
