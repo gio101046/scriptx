@@ -13,9 +13,9 @@ export default function App() {
           <View style={styles.statusBar}></View>
           <View style={{height: "20%"}}></View>
           <View style={styles.modal}>
-            <Text style={styles.loginText}>Your email</Text>
+            <Text style={styles.emailLabel}>Your email</Text>
             <Input placeholder="e.g. elon@tesla.com" />
-            <Text style={styles.loginText}>Your password</Text>
+            <Text style={styles.passwordLabel}>Your password</Text>
             <Input placeholder="Your password here" password={true} viewPass/>
             <Button round style={styles.signInButton} color="#00435D">Sign in</Button>
             <View style={styles.linkTextContainer}>
@@ -67,7 +67,12 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 20
   },
-  loginText: {
+  emailLabel: {
+    textAlign: "left",
+    alignSelf: "stretch",
+    marginBottom: 5
+  },
+  passwordLabel: {
     textAlign: "left",
     alignSelf: "stretch",
     marginTop: 20,
