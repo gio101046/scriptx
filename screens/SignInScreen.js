@@ -1,4 +1,5 @@
 import React from "react";
+import { Dimensions } from 'react-native';
 import { ImageBackground, StyleSheet, View, Image } from "react-native";
 import { Button, Input } from "galio-framework"
 import Text from "../components/Text" 
@@ -6,8 +7,9 @@ import { StatusBar } from "expo-status-bar"; // TODO: remove this for prod
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import backgroundImage from "../assets/login-page-background.jpg";
-import logo from "../assets/logo.png";
 import Theme from "../Theme";
+
+MODAL_HEIGHT = 375
 
 class SignInScreen extends React.Component {
 
@@ -24,14 +26,14 @@ class SignInScreen extends React.Component {
                 <StatusBar style="auto" />
                 <View style={styles.screen}>
                     <View style={styles.statusBar}></View>
-                    <View style={{height: "20%"}}></View>
+                    <View style={{height: ((Dimensions.get('window').height - MODAL_HEIGHT - getStatusBarHeight()) / 2)}}></View>
                     <View style={styles.modal}>
-                        <Image style={{width: 125, height: 110}} source={logo} />
+                        {/* <Image style={{width: 125, height: 110}} source={logo} /> */}
                         <Text style={styles.emailLabel}>Your email</Text>
                         <Input placeholder={this.EMAIL_LABEL_PLACEHOLDER} />
                         <Text style={{...styles.passwordLabel}}>Your password</Text>
                         <Input placeholder={this.PASSWORD_LABEL_PLACEHOLDER} password={true} viewPass/>
-                        <Button round style={styles.signInButton} color="#00435D" onPress={() => this.props.navigation.navigate('homescreen')}>
+                        <Button round style={styles.signInButton} color="#FE546F" onPress={() => this.props.navigation.navigate('homescreen')}>
                             <Text style={styles.signInButtonText}>Sign In</Text>
                         </Button>
                         <View style={styles.linkTextContainer}>
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   modal: {
     alignItems: "center",
     justifyContent: "center",
-    height: 484,
+    height: MODAL_HEIGHT,
     width: "85%",
     padding: 15,
     ...Theme.SHADOW,
@@ -85,7 +87,6 @@ const styles = StyleSheet.create({
   emailLabel: {
     textAlign: "left",
     alignSelf: "stretch",
-    marginTop: 25,
     marginBottom: 5
   },
   passwordLabel: {
@@ -101,11 +102,11 @@ const styles = StyleSheet.create({
   },
   createAccountText: {
     marginRight: 20,
-    color: "blue"
+    color: "#3E3164"
   },
   forgotPasswordText: {
     marginLeft: 20,
-    color: "blue"
+    color: "#3E3164"
   }
 });
 

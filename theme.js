@@ -9,10 +9,10 @@ const COLORS = {
 const SHADOW = {
     shadowOffset: {
         width: 0,
-        height: 5
+        height: 6
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
 }
 
 const FONT_SIZES = {
