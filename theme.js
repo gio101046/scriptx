@@ -15,6 +15,12 @@ const SHADOW = {
     shadowRadius: 2,
 }
 
+const FONT_SIZES = {
+    Small: {fontSize: 12},
+    Medium: {fontSize: 16},
+    Large: {fontSize: 20}
+}
+
 const FONT_STYLES = {
     Arial: {fontFamily: "Arial"}
 }
@@ -48,6 +54,7 @@ loadCustomFonts = async () => {
 export default {
     COLORS,
     SHADOW,
+    FONT_SIZES,
     FONT_STYLES,
     CUSTOM_FONTS_STYLES,
     isCustomFontsLoaded,

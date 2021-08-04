@@ -95,7 +95,7 @@ class HomeScreen extends React.Component {
         return (
             <Block flex={1}>
                 <Block height={getStatusBarHeight()} style={{backgroundColor: Theme.COLORS.WHITE}}></Block>
-                <NavBar right={this.renderNavBarRight()} left={this.renderNavBarLeft()} title="Subscriptions" titleStyle={Theme.CUSTOM_FONTS_STYLES.MavenProMedium} />
+                <NavBar right={this.renderNavBarRight()} left={this.renderNavBarLeft()} title="Subscriptions" titleStyle={{...Theme.CUSTOM_FONTS_STYLES.MavenProMedium, ...Theme.FONT_SIZES.Large}} />
                 <FlatList data={this.state.subscriptions} renderItem={(s) => this.renderSubscription(s.item)} style={{backgroundColor: Theme.COLORS.WHITE}} /> 
                 <Footer totalAmount={this.getSubscriptionsChargeSum()}/>
                 <Block height={getStatusBarHeight()} style={{backgroundColor: Theme.COLORS.WHITE}}>{/* TODO: Fix height wrongly calculated */}</Block>
@@ -109,7 +109,7 @@ function Footer({totalAmount}) {
         <Block row height={60} style={{backgroundColor: Theme.COLORS.WHITE, borderTopWidth: 1, borderColor: Theme.COLORS.LIGHT_GRAY}}>
             <Block flex={1} style={{marginLeft: 25, justifyContent: "center"}}>
                 <Text p style={{color: Theme.COLORS.BLACK}}>Expenses</Text>
-                <Text style={{color: "gray"}}>BY MONTH</Text>
+                <Text style={{color: "gray", ...Theme.FONT_SIZES.Small}}>BY MONTH</Text>
             </Block>
             <Block flex={1} style={{marginRight: 25, marginLeft: "auto", justifyContent: "center"}}>
                 <Text p style={{color: "gray", textAlign: "right"}}>${totalAmount}</Text>

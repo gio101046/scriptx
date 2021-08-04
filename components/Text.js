@@ -32,7 +32,7 @@ class Text extends React.Component {
     render() {
         let fontFamily = this.state.isLoaded ? Theme.CUSTOM_FONTS_STYLES.MavenProRegular : Theme.FONT_STYLES.Arial
         return (
-            <ReactText style={{...fontFamily, ...this.props.style}}>
+            <ReactText style={{...fontFamily, ...Theme.FONT_SIZES.Medium, ...this.props.style}}>
                 {this.props.children}
             </ReactText>
         );
