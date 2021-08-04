@@ -1,11 +1,11 @@
 import React from 'react';
 import { FlatList, Image } from 'react-native';
-import { NavBar, Block, Button, Text } from "galio-framework"
+import { NavBar, Block, Button } from "galio-framework"
+import Text from "../components/Text"
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCog, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
-import theme from "../theme";
-import { sum } from 'lodash';
+import Theme from "../Theme";
 
 class HomeScreen extends React.Component {
     constructor(props) {
@@ -83,7 +83,7 @@ class HomeScreen extends React.Component {
 
     renderSubscription(subscription) {
         return (
-            <Block height={60} row style={{backgroundColor: theme.COLORS.WHITE, marginRight: 15, marginLeft: 15, marginTop: 8, marginBottom: 8, borderRadius: 5, borderColor: subscription.color, borderWidth: 1, alignItems: "center"}} onPress={() => console.log(subscription)}>
+            <Block height={60} row style={{backgroundColor: Theme.COLORS.WHITE, marginRight: 15, marginLeft: 15, marginTop: 8, marginBottom: 8, borderRadius: 5, borderColor: subscription.color, borderWidth: 1, alignItems: "center"}} onPress={() => console.log(subscription)}>
                 <Image source={subscription.serviceIcon} style={{width: 30, height: 30, margin: 10}} />
                 <Text style={{color: subscription.color, marginLeft: 10}}>{subscription.serviceName}</Text>
                 <Text style={{color: subscription.color, marginRight: 15, marginLeft: "auto"}}>${subscription.amount}</Text>
@@ -94,22 +94,28 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <Block flex={1}>
-                <Block height={getStatusBarHeight()} style={{backgroundColor: theme.COLORS.WHITE}}></Block>
-                <NavBar right={this.renderNavBarRight()} left={this.renderNavBarLeft()} title="Subscriptions" titleStyle={{fontWeight: "bold"}} />
-                <FlatList data={this.state.subscriptions} renderItem={(s) => this.renderSubscription(s.item)} style={{backgroundColor: theme.COLORS.WHITE}} /> 
-                <Block row height={60} style={{backgroundColor: theme.COLORS.WHITE, borderTopWidth: 1, borderColor: theme.COLORS.LIGHT_GRAY}}>
-                    <Block flex={1} style={{marginLeft: 25, justifyContent: "center"}}>
-                        <Text p style={{color: theme.COLORS.BLACK}}>Expenses</Text>
-                        <Text style={{color: "gray"}}>BY MONTH</Text>
-                    </Block>
-                    <Block flex={1} style={{marginRight: 25, marginLeft: "auto", justifyContent: "center"}}>
-                        <Text p style={{color: "gray", textAlign: "right"}}>${this.getSubscriptionsChargeSum()}</Text>
-                    </Block>
-                </Block>
-                <Block height={getStatusBarHeight()} style={{backgroundColor: theme.COLORS.WHITE}}></Block>
+                <Block height={getStatusBarHeight()} style={{backgroundColor: Theme.COLORS.WHITE}}></Block>
+                <NavBar right={this.renderNavBarRight()} left={this.renderNavBarLeft()} title="Subscriptions" titleStyle={Theme.CUSTOM_FONTS_STYLES.MavenProMedium} />
+                <FlatList data={this.state.subscriptions} renderItem={(s) => this.renderSubscription(s.item)} style={{backgroundColor: Theme.COLORS.WHITE}} /> 
+                <Footer totalAmount={this.getSubscriptionsChargeSum()}/>
+                <Block height={getStatusBarHeight()} style={{backgroundColor: Theme.COLORS.WHITE}}>{/* TODO: Fix height wrongly calculated */}</Block>
             </Block>
         );
     }
+}
+
+function Footer({totalAmount}) {
+    return (
+        <Block row height={60} style={{backgroundColor: Theme.COLORS.WHITE, borderTopWidth: 1, borderColor: Theme.COLORS.LIGHT_GRAY}}>
+            <Block flex={1} style={{marginLeft: 25, justifyContent: "center"}}>
+                <Text p style={{color: Theme.COLORS.BLACK}}>Expenses</Text>
+                <Text style={{color: "gray"}}>BY MONTH</Text>
+            </Block>
+            <Block flex={1} style={{marginRight: 25, marginLeft: "auto", justifyContent: "center"}}>
+                <Text p style={{color: "gray", textAlign: "right"}}>${totalAmount}</Text>
+            </Block>
+        </Block>
+    );
 }
 
 export default HomeScreen;

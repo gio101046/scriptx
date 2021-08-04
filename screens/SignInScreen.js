@@ -1,11 +1,13 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Image } from "react-native";
-import { Text, Button, Input} from "galio-framework"
+import { Button, Input } from "galio-framework"
+import Text from "../components/Text" 
 import { StatusBar } from "expo-status-bar"; // TODO: remove this for prod
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import backgroundImage from "../assets/login-page-background.jpg";
 import logo from "../assets/logo.png";
-import theme from "../theme";
+import Theme from "../Theme";
 
 class SignInScreen extends React.Component {
 
@@ -14,10 +16,6 @@ class SignInScreen extends React.Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        
     }
 
     render() {
@@ -31,9 +29,11 @@ class SignInScreen extends React.Component {
                         <Image style={{width: 125, height: 110}} source={logo} />
                         <Text style={styles.emailLabel}>Your email</Text>
                         <Input placeholder={this.EMAIL_LABEL_PLACEHOLDER} />
-                        <Text style={styles.passwordLabel}>Your password</Text>
+                        <Text style={{...styles.passwordLabel}}>Your password</Text>
                         <Input placeholder={this.PASSWORD_LABEL_PLACEHOLDER} password={true} viewPass/>
-                        <Button round style={styles.signInButton} color="#00435D" onPress={() => this.props.navigation.navigate('homescreen')}>Sign in</Button>
+                        <Button round style={styles.signInButton} color="#00435D" onPress={() => this.props.navigation.navigate('homescreen')}>
+                            <Text style={styles.signInButtonText}>Sign In</Text>
+                        </Button>
                         <View style={styles.linkTextContainer}>
                           <Text style={styles.createAccountText}>Create Account</Text>
                           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statusBar: {
-    backgroundColor: "#fff",
+    backgroundColor: Theme.COLORS.WHITE,
     height: getStatusBarHeight(),
     width: "100%",
-    ...theme.SHADOW
+    ...Theme.SHADOW
   },
   modal: {
     alignItems: "center",
@@ -67,9 +67,16 @@ const styles = StyleSheet.create({
     height: 484,
     width: "85%",
     padding: 15,
-    ...theme.SHADOW,
-    backgroundColor: "#fff",
+    ...Theme.SHADOW,
+    backgroundColor: Theme.COLORS.WHITE,
     borderRadius: 10
+  },
+  signInButton: {
+    width: "100%",
+    margin: 20
+  },
+  signInButtonText: {
+    color: Theme.COLORS.WHITE,
   },
   signInButton: {
     width: "100%",

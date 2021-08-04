@@ -1,3 +1,5 @@
+import * as Font from 'expo-font';
+
 const COLORS = {
     WHITE: "#fff",
     BLACK: "#000",
@@ -13,7 +15,42 @@ const SHADOW = {
     shadowRadius: 2,
 }
 
+const FONT_STYLES = {
+    Arial: {fontFamily: "Arial"}
+}
+
+const CUSTOM_FONTS_STYLES = {
+    MavenProMedium: {fontFamily: "MavenPro-Medium"}, 
+    MavenProRegular: {fontFamily: "MavenPro-Regular"}
+};
+
+const _CUSTOM_FONTS = {
+    'MavenPro-Medium': require('./assets/fonts/MavenPro-Medium.ttf'),
+    'MavenPro-Regular': require('./assets/fonts/MavenPro-Regular.ttf'),
+}
+
+// TODO: move into a class potentially a seperate file
+let customFontsLoaded = false
+
+isCustomFontsLoaded = () => {
+    return customFontsLoaded
+};
+
+setCustomFontsLoaded = () => {
+    customFontsLoaded = true
+};
+
+loadCustomFonts = async () => {
+    await Font.loadAsync(_CUSTOM_FONTS);
+    setCustomFontsLoaded()
+};
+
 export default {
     COLORS,
-    SHADOW
+    SHADOW,
+    FONT_STYLES,
+    CUSTOM_FONTS_STYLES,
+    isCustomFontsLoaded,
+    setCustomFontsLoaded, 
+    loadCustomFonts
 }
