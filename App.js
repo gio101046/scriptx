@@ -1,7 +1,8 @@
 import React from "react";
 import SignInScreen from "./screens/SignInScreen";
 import HomeScreen from "./screens/HomeScreen";
-import AddSubscriptionScreen from "./screens/AddSubscriptionScreen";
+import ServicesScreen from "./screens/ServicesScreen";
+import SubscriptionScreen from "./screens/SubscriptionScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Theme from "./Theme";
@@ -40,7 +41,7 @@ class App extends React.Component {
               (
                 <>
                   <Stack.Screen name="homescreen" component={HomeScreen} options={{animationTypeForReplace: !this.state.isSignedIn ? 'pop' : 'push'}} />
-                  <Stack.Screen name="add-subscription" component={AddSubscriptionScreen} options={{presentation: 'modal' }}/>
+                  <Stack.Screen name="add-subscription" component={AddSubscriptionNavigation} options={{presentation: 'modal' }}/>
                 </>
               )}
           </Stack.Navigator>
@@ -48,6 +49,15 @@ class App extends React.Component {
       </NavigationContainer>
     );
   }
+}
+
+function AddSubscriptionNavigation() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="services" component={ServicesScreen} />
+      <Stack.Screen name="subscription" component={SubscriptionScreen} />
+    </Stack.Navigator>
+  );
 }
 
 export default App;

@@ -19,7 +19,8 @@ const SHADOW = {
 const FONT_SIZES = {
     Small: {fontSize: 12},
     Medium: {fontSize: 16},
-    Large: {fontSize: 20}
+    Large: {fontSize: 20},
+    ExtraLarge: {fontSize: 24}
 }
 
 const FONT_STYLES = {

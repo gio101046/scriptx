@@ -5,7 +5,7 @@ import { Button, Input } from "galio-framework"
 import Text from "../components/Text" 
 import { StatusBar } from "expo-status-bar"; 
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import BackgroundImage from "../assets/login-page-background.jpg";
+import BackgroundImage from "../assets/signin-background.jpg";
 import Theme from "../Theme";
 import AuthContext from "../contexts/Auth";
 

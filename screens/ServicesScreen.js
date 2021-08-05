@@ -1,11 +1,12 @@
 import React from 'react';
 import { FlatList, Image, TouchableOpacity } from 'react-native';
 import Text from '../components/Text'
-import { Block, NavBar, Input } from 'galio-framework'
+import { Block, NavBar, Input, Button } from 'galio-framework'
 import { Dimensions } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Theme from '../Theme'
 
-class AddSubscriptionScreen extends React.Component {
+class ServicesScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -88,6 +89,7 @@ class AddSubscriptionScreen extends React.Component {
         let currentGroup = [];
         let filter = this.state.filter;
         this.state.services.forEach((service) => {
+            // apply filter if any
             if (service.name.toUpperCase().includes(filter.toUpperCase())) {
                 if (currentGroupCount == 3) {
                     groupedServices.push(currentGroup);
@@ -120,10 +122,10 @@ class AddSubscriptionScreen extends React.Component {
         return (
             <Block row style={{backgroundColor: Theme.COLORS.WHITE, alignSelf: "center"}}>
                 {services.map((service, i) => { return (
-                    <TouchableOpacity key={i}>
-                        <Block height={boxWidthAndHeight} width={boxWidthAndHeight} style={{alignItems: "center", margin: boxSpacing, justifyContent: "center", borderRadius: 5, borderColor: service.color, borderWidth: 1}}>
+                    <TouchableOpacity key={i} onPress={() => this.props.navigation.navigate("subscription", {service: service})}>
+                        <Block height={boxWidthAndHeight} width={boxWidthAndHeight} style={{backgroundColor: service.color+"09",alignItems: "center", margin: boxSpacing, justifyContent: "center", borderRadius: 5, borderColor: service.color, borderWidth: 1}}>
                             <Image source={service.icon} style={{width: 40, height: 40, marginBottom: 15}} />
-                            <Text style={{color: service.color}}>{service.name}</Text>
+                            <Text>{service.name}</Text>
                         </Block>
                     </TouchableOpacity>
                 )})}
@@ -132,16 +134,25 @@ class AddSubscriptionScreen extends React.Component {
     }
 
     render() {
+        let rowWidth = Dimensions.get('window').width;
+        let buttonWidth = rowWidth * 0.9;
+
         return (
-            <Block flex={1}>
-                <NavBar title="Services" titleStyle={[Theme.FONT_SIZES.Large, Theme.CUSTOM_FONTS_STYLES.MavenProMedium]}></NavBar>
-                <Block style={{backgroundColor: Theme.COLORS.WHITE, paddingLeft: 20, paddingRight: 20, paddingBottom: 20}} > 
+            <Block flex={1} style={{backgroundColor: Theme.COLORS.WHITE}}>
+                <NavBar title="Select Service" titleStyle={[Theme.FONT_SIZES.Large, Theme.CUSTOM_FONTS_STYLES.MavenProMedium]}></NavBar>
+                <Block style={{backgroundColor: Theme.COLORS.WHITE, paddingLeft: 20, paddingRight: 20, paddingBottom: 10}} > 
                     <Input placeholder="Search services..." right icon="search" family="fontawesome" iconSize={20} iconColor="gray" bgColor={Theme.COLORS.LIGHT_GRAY} onChangeText={text => this.applyFilter(text)}/>
                 </Block>
                 <FlatList data={this.getGroupedServices()} renderItem={(s) => this.renderService(s.item)} keyExtractor={(s, i) => i.toString()} style={{backgroundColor: Theme.COLORS.WHITE}}/>
+                <Block center style={{backgroundColor: Theme.COLORS.WHITE, paddingTop: 10}}>
+                    <Button round color="#FE546F" style={{width: buttonWidth}} onPress={() => {}}>
+                        <Text style={{color: Theme.COLORS.WHITE}}>Create custom subscription</Text>
+                    </Button>
+                </Block>
+                <Block height={getStatusBarHeight()} style={{backgroundColor: Theme.COLORS.WHITE}}>{/* TODO: Fix height wrongly calculated */}</Block>
             </Block>
         );
     }
 }
 
-export default AddSubscriptionScreen;
+export default ServicesScreen;
