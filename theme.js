@@ -3,7 +3,8 @@ import * as Font from 'expo-font';
 const COLORS = {
     WHITE: "#fff",
     BLACK: "#000",
-    LIGHT_GRAY: "#D3D3D3"
+    GRAY: "#D3D3D3",
+    LIGHT_GRAY: "#F7F7F7"
 }
 
 const SHADOW = {
